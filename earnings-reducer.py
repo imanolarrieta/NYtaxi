@@ -1,9 +1,15 @@
-#!/usr/bin/python
+#!/usr/bin/env python2.7
+# Imanol Arrieta Ibarra
+# Earnings reducer
+# Call : cat trip.csv fare.csv | ./join_map.py
+# fare.csv has lines of length 11 and is the right dataset. trip.csv has lines of lenght 14.
+# Key: hack_license
+# Value: pick_datetime,drop_datetime,trip_dist,pick_long,pick_lat,drop_long,drop_lat,payment_type,fare_amount,
+# surcharge,tip_amount,mta_tax,tolls_amount,total_amount
+
 from itertools import groupby
 from operator import itemgetter
-from datetime import datetime
-from datetime import timedelta
-from time import mktime
+import time
 import sys
 
 def parse_input(file, separator='\t'):
@@ -11,13 +17,17 @@ def parse_input(file, separator='\t'):
         yield line.rstrip('\n').split(separator, 1)
 
 def time_diff(t1,t2):
-    return mktime(t1.timetuple())-mktime(t2.timetuple())
+    return time.mktime(time.strptime(t1,'%m/%d/%Y %I:%M:%S %p'))-\
+                      time.mktime(time.strptime(t2,'%m/%d/%Y %I:%M:%S %p'))
 
 data = parse_input(sys.stdin)
 for key, values in groupby(data, itemgetter(0)):
     taxi_driver =[]
     for value in values:
-        pickup_date, dropoff_date, trip_time_in_secs,total_amount = value[1].split('\t')
+        hack_license,pick_datetime,drop_datetime,trip_dist,pick_long,\
+        pick_lat,drop_long,drop_lat,payment_type,fare_amount,\
+        surcharge,tip_amount,mta_tax,tolls_amount,total_amount = value[1].split('\t')
+
         pickup_date = datetime.strptime(pickup_date,'%Y-%m-%d %H:%M:%S')
         dropoff_date = datetime.strptime(dropoff_date,'%Y-%m-%d %H:%M:%S')
         pickup_hour = pickup_date.replace(minute=0,second=0)
