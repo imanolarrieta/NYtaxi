@@ -35,9 +35,13 @@ def validate_amount(amount):
     # Amount is greater than zero and not too extreme.
     pass
 
+def validate_passengers(amount):
+    # Amount is greater than zero and not too extreme.
+    pass
+
 def validate_data(info):
 
-    hack_license,pick_datetime,drop_datetime,trip_dist,pick_long,\
+    hack_license,pick_datetime,drop_datetime,n_passengers,trip_dist,pick_long,\
     pick_lat,drop_long,drop_lat,payment_type,fare_amount,\
     surcharge,tip_amount,mta_tax,tolls_amount,total_amount=info
 
@@ -52,7 +56,8 @@ def validate_data(info):
     val_time = validate_time(info) # Are times too long or 0? Are they positive?
     velocity = validate_velocity(time_in_seconds) # Is velocity too out of reach
     amount = validate_amount(total_amount)
-    return(euclidean and gps_pickup and gps_dropoff and distance and val_time and velocity and amount)
+    pass_validate = validate_passengers(n_passengers)
+    return(euclidean and gps_pickup and gps_dropoff and distance and val_time and velocity and amount and pass_validate)
 
 data = parse_input(sys.stdin)
 for key, values in groupby(data, itemgetter(0)):

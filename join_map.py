@@ -28,7 +28,7 @@ def join_map():
             dropoff_longitude, dropoff_latitude = values
 
             print '\t'.join([hack_license+pickup_datetime,hack_license,pickup_datetime,\
-                             dropoff_datetime,trip_distance,pickup_longitude,\
+                             dropoff_datetime,passenger_count,trip_distance,pickup_longitude,\
                              pickup_latitude,dropoff_longitude,dropoff_latitude,'left'])
 
 if __name__=='__main__':
