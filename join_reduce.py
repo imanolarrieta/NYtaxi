@@ -7,6 +7,13 @@ from itertools import groupby
 from operator import itemgetter
 import time
 import sys
+from misc import *
+
+MAX_DISTANCE = 100 # 100 miles
+MAX_TIME = 86400 # one day in seconds
+MAX_SPEED = 100 # miles per hour
+MAX_AMOUNT = 500 # $
+MAX_NPASS = 10 # maximum number of passengers
 
 def parse_input(file, separator='\t'):
     for line in file:
@@ -15,29 +22,37 @@ def parse_input(file, separator='\t'):
 def validate_euclidean(trip_dist,pick_long,pick_lat,drop_long,drop_lat):
     # Validate that the straight line between the pickup location and the dropoff location is shorter
     # than the trip distance.
-    pass
+    # Get distance in miles between GPS points
+    distance_gps = haversine(pick_long, pick_lat, drop_long, drop_lat)
+    # check if distance computed with haversine is smaller might want to include confidence interval.
+    return distance_gps <= trip_dist
 
-def validate_gps(long,lat):
-    # Validate that longitude and latitude are valid values. (In an area that surrounds Manhattan)
-    pass
+def validate_gps(lon,lat):
+    return in_manhattan(lon, lat)
 
 def validate_distance(trip_dist,pick_long,pick_lat,drop_long,drop_lat):
-    # Distances are positive, greater than zero and not too extreme.
-    pass
-def validate_time(time_in_seconds):
-    # Time is greater than zero and is not too extreme
-    pass
+    distance_gps = haversine(pick_long, pick_lat, drop_long, drop_lat)
+    distance_gps_valid = distance_gps > 0 and distance_gps <= MAX_DISTANCE
+    distance_trip_valid = trip_dist > 0 and trip_dist <= MAX_DISTANCE
+    return distance_gps_valid and distance_trip_valid
 
-def validate_velocity(velocity):
+def validate_time(time):
+    # Time is greater than zero and is not too extreme
+    return time > 0 and time < MAX_TIME
+
+def validate_velocity(time,trip_dist):
     # Velocity is positive and not too extreme
-    pass
+    time_hours = time / 3600.0
+    average_speed = trip_dist/time_hours # mi/hr
+    return average_speed > 0 and average_speed < MAX_SPEED
+
 def validate_amount(amount):
     # Amount is greater than zero and not too extreme.
-    pass
+    return amount > 0 and amount < MAX_AMOUNT
 
-def validate_passengers(amount):
+def validate_passengers(n_pass):
     # Amount is greater than zero and not too extreme.
-    pass
+    return n_pass>0 and n_pass<MAX_NPASS
 
 def validate_data(info):
 
@@ -54,7 +69,7 @@ def validate_data(info):
     gps_dropoff = validate_gps(drop_long,drop_lat)
     distance = validate_distance(trip_dist,pick_long,pick_lat,drop_long,drop_lat) # Are distances too big
     val_time = validate_time(info) # Are times too long or 0? Are they positive?
-    velocity = validate_velocity(time_in_seconds) # Is velocity too out of reach
+    velocity = validate_velocity(time_in_seconds,trip_dist) # Is velocity too out of reach
     amount = validate_amount(total_amount)
     pass_validate = validate_passengers(n_passengers)
     return(euclidean and gps_pickup and gps_dropoff and distance and val_time and velocity and amount and pass_validate)

@@ -85,7 +85,7 @@ for key, values in groupby(data, itemgetter(0)):
         n_pass += passengers
         n_trip += 1
         n_miles += trip_dist
-        av_speed += 
+        av_speed +=
 
 
 

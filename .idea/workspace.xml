@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5041dbb1-081f-4452-9749-8ede49a7266b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/earnings-reducer.py" afterPath="$PROJECT_DIR$/earnings-reducer.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/join_map.py" afterPath="$PROJECT_DIR$/join_map.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/manhattan_polygon_osm.wkt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/misc.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/join_reduce.py" afterPath="$PROJECT_DIR$/join_reduce.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="EE392K.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,11 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="earnings-reducer.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="earnings-reducer.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/earnings-reducer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.96445495">
-              <caret line="87" column="20" selection-start-line="87" selection-start-column="20" selection-end-line="87" selection-end-column="20" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
               <folding>
                 <element signature="e#397#426#0" expanded="true" />
               </folding>
@@ -38,11 +38,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="join_reduce.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="join_reduce.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/join_reduce.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="44" column="32" selection-start-line="44" selection-start-column="32" selection-end-line="44" selection-end-column="32" />
+            <state vertical-scroll-proportion="-1.843602">
+              <caret line="15" column="45" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
               <folding>
                 <element signature="e#149#178#0" expanded="true" />
               </folding>
@@ -90,8 +90,8 @@
       <list>
         <option value="$PROJECT_DIR$/identity-mapper.py" />
         <option value="$PROJECT_DIR$/join_map.py" />
-        <option value="$PROJECT_DIR$/join_reduce.py" />
         <option value="$PROJECT_DIR$/earnings-reducer.py" />
+        <option value="$PROJECT_DIR$/join_reduce.py" />
       </list>
     </option>
   </component>
@@ -343,22 +343,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/join_reduce.py">
+    <entry file="file://$PROJECT_DIR$/earnings-reducer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="44" column="32" selection-start-line="44" selection-start-column="32" selection-end-line="44" selection-end-column="32" />
+          <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
           <folding>
-            <element signature="e#149#178#0" expanded="true" />
+            <element signature="e#397#426#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/earnings-reducer.py">
+    <entry file="file://$PROJECT_DIR$/misc.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.96445495">
-          <caret line="87" column="20" selection-start-line="87" selection-start-column="20" selection-end-line="87" selection-end-column="20" />
+        <state vertical-scroll-proportion="-0.31516588">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#397#426#0" expanded="true" />
+            <element signature="e#0#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/join_reduce.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.843602">
+          <caret line="15" column="45" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
+          <folding>
+            <element signature="e#149#178#0" expanded="true" />
           </folding>
         </state>
       </provider>
