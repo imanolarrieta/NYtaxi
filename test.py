@@ -34,7 +34,32 @@ def test_haversine():
     print 'actual distance: '+str(actual_dist)
     assert abs(computed_dist-actual_dist) < 0.05
 
+def test_in_square():
+    points_in = [(40.769898, -73.974733),
+                        (40.738690, -74.000826),
+                        (40.802132, -73.943148),
+                        (40.774578, -73.985720),
+                        (40.822400, -73.977480),
+                        (40.688639, -73.945157)]
+    points_not_in = [(37.443189, -122.164251),
+                    (37.455522, -122.151977)]
+    for (lat,lon) in points_in:
+        in_location = in_square(lon, lat)
+        print in_location
+        assert in_location == True
+
+    for (lat,lon) in points_not_in:
+        in_location = in_square(lon, lat)
+        print in_location
+        assert in_location == False
+'''
 # test in_manhattan
+print 'Testing in_manhattan \n'
 test_in_manhattan()
+'''
 # test haversine function
+print 'Testing haversine \n'
 test_haversine()
+# test in_square
+print 'Testing in_square \n'
+test_in_square()
