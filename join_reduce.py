@@ -64,14 +64,17 @@ def validate_data(info):
 
     time_in_seconds = time.mktime(time.strptime(drop_datetime,'%Y-%m-%d %H:%M:%S'))-\
                       time.mktime(time.strptime(pick_datetime,'%Y-%m-%d %H:%M:%S'))
-    pick_long = float(pick_long)
-    pick_lat = float(pick_lat)
-    drop_long = float(drop_long)
-    drop_lat = float(drop_lat)
-    trip_dist = float(trip_dist)
-    total_amount = float(total_amount)
-    time_in_seconds = float(time_in_seconds)
-    n_passengers = int(n_passengers)
+    try:
+        pick_long = float(pick_long)
+        pick_lat = float(pick_lat)
+        drop_long = float(drop_long)
+        drop_lat = float(drop_lat)
+        trip_dist = float(trip_dist)
+        total_amount = float(total_amount)
+        time_in_seconds = float(time_in_seconds)
+        n_passengers = int(n_passengers)
+    except ValueError:
+        return False
     # Is the straight distance shorter than the reported distance?
     euclidean = validate_euclidean(trip_dist,pick_long,pick_lat,drop_long,drop_lat)
     gps_pickup = validate_gps(pick_long,pick_lat) # Are the GPS coordinates present in Manhattan
