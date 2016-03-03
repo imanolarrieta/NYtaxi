@@ -1,7 +1,5 @@
 from math import radians, cos, sin, asin, sqrt
 import json
-from shapely.geometry import shape, Point
-from shapely.wkt import loads as wkt_loads
 
 def haversine(lon1, lat1, lon2, lat2):
     """
@@ -18,7 +16,12 @@ def haversine(lon1, lat1, lon2, lat2):
     c = 2 * asin(sqrt(a)) 
     r = 3956  # Radius of earth in miles. Use 6371 for kms
     return c * r
+'''
+If you plan on using this function add the following lines at the beginning of the file:
+from shapely.geometry import shape, Point
+from shapely.wkt import loads as wkt_loads
 
+# Clean way to filter taxis no in manhattan
 def in_manhattan(lon, lat):
     # load GeoJSON file containing sectors
     with open('manhattan_polygon_osm.wkt') as f:
@@ -30,3 +33,8 @@ def in_manhattan(lon, lat):
         return True
     else:
         return False
+'''
+
+# function to filter out GPS that are very far from NYC (errors)
+def in_square(lon, lat):
+    return (lon < -73.3502) and (lon > -74.5532) and (lat > 40.2858) and (lat < 41.1125)

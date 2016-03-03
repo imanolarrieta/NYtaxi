@@ -7,7 +7,7 @@ from itertools import groupby
 from operator import itemgetter
 import time
 import sys
-from misc import *
+from misc import in_square, haversine
 
 MAX_DISTANCE = 100 # 100 miles
 MAX_TIME = 86400 # one day in seconds
@@ -27,7 +27,7 @@ def validate_euclidean(trip_dist,pick_long,pick_lat,drop_long,drop_lat):
     return distance_gps <= trip_dist
 
 def validate_gps(lon,lat):
-    return in_manhattan(lon, lat)
+    return in_square(lon, lat)
 
 def validate_distance(trip_dist,pick_long,pick_lat,drop_long,drop_lat):
     distance_gps = haversine(pick_long, pick_lat, drop_long, drop_lat)
