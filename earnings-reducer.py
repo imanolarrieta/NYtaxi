@@ -44,10 +44,11 @@ for key, values in groupby(data, itemgetter(0)):
       n_miles,av_speed,earnings_card,earnings_cash,tips_card,tips_cash,fare,time_unoccupied  = 14*[0]
     last_dropoff = []
     current_hour = []
+    hack_license = key
 
     for value in values:
         # Unpack values
-        hack_license,pick_date,drop_date,passengers,trip_dist,pick_long,\
+        pick_date,drop_date,passengers,trip_dist,pick_long,\
         pick_lat,drop_long,drop_lat,payment_type,fare_amount,\
         surcharge,tip_amount,mta_tax,tolls_amount,total_amount = value[1].split('\t')
 
@@ -62,6 +63,7 @@ for key, values in groupby(data, itemgetter(0)):
         tip_amount = float(tip_amount)
         passengers = float(passengers)
         trip_dist = float(trip_dist)
+        fare_amount = float(fare_amount)
 
 
         if not current_hour:
