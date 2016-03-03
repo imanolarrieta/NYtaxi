@@ -57,6 +57,13 @@ for key, values in groupby(data, itemgetter(0)):
         drop_hour = drop_date.replace(minute=0,second=0)
         trip_time = time_diff(drop_date,pick_date)
 
+        trip_time = float(trip_time)
+        total_amount = float(total_amount)
+        tip_amount = float(tip_amount)
+        passengers = float(passengers)
+        trip_dist = float(trip_dist)
+
+
         if not current_hour:
             current_hour.append(pick_hour)
         elif time_diff(pick_hour,current_hour[0])>0:
@@ -71,7 +78,7 @@ for key, values in groupby(data, itemgetter(0)):
             n_miles,av_speed,earnings_card,earnings_cash,tips_card,tips_cash,fare,time_unoccupied  = 14*[0]
             goes_over= False
 
-        second_earnings = float(total_amount)/float(trip_time)
+        second_earnings = total_amount/trip_time
 
         goes_over = time_diff(drop_hour,pick_hour)>0 # Does the trip crosses over an hour
 

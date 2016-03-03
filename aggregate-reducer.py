@@ -30,6 +30,7 @@ for key, values in groupby(data, itemgetter(0)):
         agg_duty_faber+= float(t_onduty_faber)
 
         agg_occupied += float(t_occupied)
+        agg_passengers += float(n_pass)
         agg_earnings += float(total_earned)
         agg_hack +=1
         agg_rides+=float(num_rides)
