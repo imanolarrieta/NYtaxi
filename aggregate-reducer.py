@@ -13,20 +13,23 @@ for key, values in groupby(data, itemgetter(0)):
     agg_duty_15 = 0.0
     agg_duty_30 = 0.0
     agg_duty_60 = 0.0
-    agg_duty_360 = 0.0
+    agg_duty_faber = 0.0
     agg_occupied = 0.0
     agg_earnings = 0.0
     agg_hack = 0.0
     agg_rides=0.0
 
     for value in values:
-        time_on_duty_15,time_on_duty_30,time_on_duty_60,time_on_duty_360,time_occupied,total_earned, num_rides = value[1].split('\t')
-        agg_duty_15+= float(time_on_duty_15)
-        agg_duty_30+= float(time_on_duty_30)
-        agg_duty_60+= float(time_on_duty_60)
-        agg_duty_360+= float(time_on_duty_360)
 
-        agg_occupied += float(time_occupied)
+        hour,date,hack_license,t_onduty_faber,t_onduty_15,t_onduty_30,t_onduty_60,t_occupied,n_pass,n_trip,\
+        n_miles,av_speed,earnings_card,earnings_cash,tips_card,tips_cash,fare,goes_over= value[1].split('\t')
+
+        agg_duty_15+= float(t_onduty_15)
+        agg_duty_30+= float(t_onduty_30)
+        agg_duty_60+= float(t_onduty_60)
+        agg_duty_faber+= float(t_onduty_faber)
+
+        agg_occupied += float(t_occupied)
         agg_earnings += float(total_earned)
         agg_hack +=1
         agg_rides+=float(num_rides)
