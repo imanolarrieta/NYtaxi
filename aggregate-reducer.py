@@ -10,22 +10,9 @@ def parse_input(file, separator='\t'):
 
 data = parse_input(sys.stdin)
 for key, values in groupby(data, itemgetter(0)):
-    agg_duty_15 = 0.0
-    agg_duty_30 = 0.0
-    agg_duty_60 = 0.0
-    agg_duty_faber = 0.0
-    agg_occupied = 0.0
-    agg_hack = 0.0
-    agg_trips=0.0
-    agg_pass = 0.0
-    agg_miles = 0.0
-    agg_speed = 0.0
-    agg_earnings_card = 0.0
-    agg_earnings_cash = 0.0
-    agg_tips_card = 0.0
-    agg_tips_cash = 0.0
-    agg_fare = 0.0
-    agg_goes_over = 0.0
+    agg_duty_15,agg_duty_30, agg_duty_60,agg_duty_faber,agg_occupied,agg_hack,agg_trips,\
+       agg_pass,agg_miles,agg_speed,agg_earnings_card,agg_earnings_cash,agg_tips_card,\
+       agg_tips_cash,agg_fare,agg_goes_over= 16*[0.0]
 
     for value in values:
 
