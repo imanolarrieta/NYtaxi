@@ -85,15 +85,15 @@ def validate_data(info):
     time_in_seconds = time.mktime(time.strptime(drop_datetime,'%Y-%m-%d %H:%M:%S'))-\
                       time.mktime(time.strptime(pick_datetime,'%Y-%m-%d %H:%M:%S'))
     try:
-        pick_long = float(pick_long)
-        pick_lat = float(pick_lat)
-        drop_long = float(drop_long)
-        drop_lat = float(drop_lat)
-        trip_dist = float(trip_dist)
-        total_amount = float(total_amount)
-        time_in_seconds = float(time_in_seconds)
-        n_passengers = int(n_passengers)
+        pick_long = float(pick_long.strip())
+        pick_lat = float(pick_lat.strip())
+        drop_long = float(drop_long.strip())
+        drop_lat = float(drop_lat.strip())
+        trip_dist = float(trip_dist.strip())
+        total_amount = float(total_amount.strip())
+        n_passengers = int(n_passengers.strip())
     except ValueError:
+        sys.stderr.write('CASTING TO FLOATS FAILED')
         return False
     # Is the straight distance shorter than the reported distance?
     euclidean = validate_euclidean(trip_dist,pick_long,pick_lat,drop_long,drop_lat)
