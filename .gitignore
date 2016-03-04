@@ -1,2 +1,7 @@
 /trip_data_1.csv
 /trip_fare_1.csv
+*.pyc
+/test.csv
+/test2.csv
+/final.tsv
+

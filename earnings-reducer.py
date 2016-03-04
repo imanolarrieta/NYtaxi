@@ -38,15 +38,17 @@ def time_diff(t1,t2):
 
 data = parse_input(sys.stdin)
 for key, values in groupby(data, itemgetter(0)):
+    # Initialize output variables
     t_onduty_faber = 3600
     t_onduty_15,t_onduty_30,t_onduty_60,t_occupied,n_pass,n_trip,\
       n_miles,av_speed,earnings_card,earnings_cash,tips_card,tips_cash,fare,time_unoccupied  = 14*[0]
-    goes_over = False
     last_dropoff = []
     current_hour = []
+    hack_license = key
+
     for value in values:
         # Unpack values
-        hack_license,pick_date,drop_date,passengers,trip_dist,pick_long,\
+        pick_date,drop_date,passengers,trip_dist,pick_long,\
         pick_lat,drop_long,drop_lat,payment_type,fare_amount,\
         surcharge,tip_amount,mta_tax,tolls_amount,total_amount = value[1].split('\t')
 
@@ -56,13 +58,21 @@ for key, values in groupby(data, itemgetter(0)):
         drop_hour = drop_date.replace(minute=0,second=0)
         trip_time = time_diff(drop_date,pick_date)
 
+        trip_time = float(trip_time)
+        total_amount = float(total_amount)
+        tip_amount = float(tip_amount)
+        passengers = float(passengers)
+        trip_dist = float(trip_dist)
+        fare_amount = float(fare_amount)
+
+
         if not current_hour:
             current_hour.append(pick_hour)
         elif time_diff(pick_hour,current_hour[0])>0:
             hour_stats= [pick_hour.strftime('%Y-%m-%d %H'),\
                     current_hour.pop().hour,pick_date.date().strftime('%Y-%m-%d'),
                     hack_license,t_onduty_faber,t_onduty_15,t_onduty_30,t_onduty_60,t_occupied,n_pass,n_trip,\
-                    n_miles,av_speed,earnings_card,earnings_cash,tips_card,tips_cash,fare,goes_over]
+                    n_miles,av_speed/n_trip,earnings_card,earnings_cash,tips_card,tips_cash,fare,goes_over]
             print '\t'.join([str(x) for x in hour_stats])
             current_hour.append(pick_hour) # Change hour aggregation
             # Reinitialize hour variables
@@ -70,9 +80,9 @@ for key, values in groupby(data, itemgetter(0)):
             n_miles,av_speed,earnings_card,earnings_cash,tips_card,tips_cash,fare,time_unoccupied  = 14*[0]
             goes_over= False
 
-        second_earnings = float(total_amount)/float(trip_time)
+        second_earnings = total_amount/trip_time
 
-        goes_over = time_diff(drop_hour,pick_hour)>0 # Does the trip goes over an hour
+        goes_over = time_diff(drop_hour,pick_hour)>0 # Does the trip crosses over an hour
 
         if last_dropoff:
             time_unoccupied += time_diff(pick_date,last_dropoff.pop())
@@ -85,15 +95,17 @@ for key, values in groupby(data, itemgetter(0)):
         n_pass += passengers
         n_trip += 1
         n_miles += trip_dist
-        av_speed +=
+        # Here I am only adding the average trip speeds. When printing I'll divide these by the number of trips
+        av_speed +=trip_dist/(trip_time/ 3600.0)
 
+        if payment_type =='Cash':
+            earnings_cash+= total_amount
+            tips_cash += tip_amount
+        else:
+            earnings_card += total_amount
+            tips_card += tip_amount
 
-
-
-
-
-
-
+        fare += fare_amount
 
 
 

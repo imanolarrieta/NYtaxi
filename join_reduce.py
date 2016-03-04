@@ -104,6 +104,7 @@ def validate_data(info):
     velocity = validate_velocity(time_in_seconds,trip_dist) # Is velocity too out of reach
     amount = validate_amount(total_amount)
     pass_validate = validate_passengers(n_passengers)
+
     return(euclidean and gps_pickup and gps_dropoff and distance and val_time and velocity and amount and pass_validate)
 
 data = parse_input(sys.stdin)
